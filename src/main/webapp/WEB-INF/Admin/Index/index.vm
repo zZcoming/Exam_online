@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>程序设计在线学习系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/style/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/style/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/style/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div class="header">
+
+    <div class="dl-title">
+        <span class="lp-title-port">程序设计在线学习系统</span>
+    </div>
+
+    <div class="dl-log">欢迎您，<span class="dl-log-user">$!{admin.loginName}</span><a href="http://localhost:8080/logout.htm" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+</div>
+<div class="content">
+    <div class="dl-main-nav">
+        <div class="dl-inform"><div class="dl-inform-title">贴心小秘书<s class="dl-inform-icon dl-up"></s></div></div>
+        <ul id="J_Nav"  class="nav-list ks-clear">
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">首页</div></li>
+            <li class="nav-item"><div class="nav-item-inner nav-order">用户管理</div></li>
+            <li class="nav-item"><div class="nav-item-inner nav-order">试题管理</div></li><li></li>
+            <li class="nav-item"><div class="nav-item-inner nav-inventory">试卷管理</div></li>
+            <li class="nav-item"><div class="nav-item-inner nav-supplier">日志管理</div></li>
+            <li class="nav-item"><div class="nav-item-inner nav-marketing">个人信息管理</div></li>
+        </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+
+    </ul>
+</div>
+<script type="text/javascript" src="/style/assets/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/style/assets/js/bui.js"></script>
+<script type="text/javascript" src="/style/assets/js/config.js"></script>
+
+<script>
+    BUI.use('common/main',function(){
+        var config = [{
+            id:'menu',
+            homePage : 'welcome',
+            menu:[{
+                text:'用户欢迎页',
+                items:[
+                    {id:'welcome',text:'欢迎页',href:'/Admin/welcome.htm',closeable : false}
+                ]
+            }]
+        },{
+            id:'Admin',
+            homePage: 'adminListUI',
+            menu:[{
+                text:'管理员管理',
+                items:[
+                    {id:'userList',text:'管理员列表',href:'http://localhost:8080/adminListUI.htm',closeable : false},
+                    {id:'addUser',text:'添加管理员',href:'http://localhost:8080/addAdminUI.htm'}
+                ]
+            },{
+                text:'角色管理',
+                items:[
+                    {id:'roleList',text:'角色列表',href:'main/operation.html'},
+                    {id:'addRole',text:'添加角色',href:'http://localhost:8080/addRoleUI.htm'}
+                ]
+            },{
+                text:'权限管理',
+                items:[
+                    {id:'privilegeList',text:'权限列表',href:'main/resource.html'},
+                    {id:'addPrivilege',text:'添加权限',href:'main/loader.html'}
+                ]
+            }]
+        },{
+            id:'form',
+            menu:[{
+                text:'试题管理1',
+                items:[
+                    {id:'code',text:'试题列表',href:'form/code.html'},
+                    {id:'group',text:'添加试题',href:'http://localhost:8080/addArticleUI.htm'}
+
+                ]
+            },{
+                text:'试题管理2',
+                items:[
+                    {id:'success',text:'试题列表',href:'form/success.html'},
+                    {id:'fail',text:'添加试题',href:'form/fail.html'}
+
+                ]
+            },{
+                text:'章节管理',
+                items:[
+                    {id:'grid',text:'章节列表',href:'form/grid.html'},
+                    {id:'form-dialog-grid',text:'添加章节',href:'form/form-dialog-grid.html'}
+                ]
+            }]
+        },{
+            id:'search',
+            menu:[{
+                text:'试卷管理',
+                items:[
+                    {id:'code',text:'试卷列表',href:'search/code.html'},
+                    {id:'example',text:'组卷',href:'search/example.html'}
+                    ]
+            },{
+                text:'评卷',
+                items:[
+                    {id:'code',text:'评卷',href:'search/code.html'},
+                    {id:'code',text:'已批改试卷列表',href:'search/code.html'}
+            ]}]
+        },{
+            id:'detail',
+            menu:[{
+                text:'网站公告',
+                items:[
+                    {id:'code',text:'所有公告',href:'detail/code.html'},
+                    {id:'example',text:'发布公告',href:'detail/example.html'}
+                ]
+            },{
+                text:'网站流量查看',
+                items:[
+                    {id:'code',text:'流量图表',href:'detail/code.html'}
+                ]
+            },{
+                text:'系统日志',
+                items:[
+                    {id:'code',text:'查看系统日志',href:'detail/code.html'},
+                    {id:'code',text:'查看系统操作日志',href:'detail/code.html'}
+                ]
+            }]
+        },{
+            id : 'chart',
+            menu : [{
+                text : '个人信息管理',
+                items:[
+                    {id:'code',text:'个人信息',href:'chart/code.html'}
+                ]
+            },{
+                text : '学生管理',
+                items:[
+                    {id:'code',text:'学生列表',href:'chart/code.html'},
+                    {id:'code1',text:'添加学生',href:'chart/code.html'}
+                ]
+            }]
+        }];
+        new PageUtil.MainPage({
+            modulesConfig : config
+        });
+    });
+</script>
+</body>
+</html>

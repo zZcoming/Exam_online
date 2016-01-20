@@ -1,0 +1,81 @@
+a{
+	color:#545454;
+	text-decoration: none;
+}
+a:hover{
+	color:#56C5FF;
+	text-decoration: none;
+}
+.user-type{
+	display: block;
+	padding: 3px 15px;
+	clear: both;
+	font-weight: normal;
+	line-height: 18px;
+	white-space: nowrap;
+}
+.user-uid{
+	display: block;
+	padding: 3px 15px;
+	clear: both;
+	font-weight: normal;
+	line-height: 18px;
+	white-space: nowrap;
+}
+.plant{
+	margin: 0 auto;
+	display: block;
+	height:auto;
+}
+.plant_img{
+	border-radius: 10px;
+	width:160px;
+	height:90px;
+	float:left;
+}
+.hot_plant{
+	padding: 1em;
+	border-radius: 5px;
+	background-color: #f9f6f1;
+}
+.hot_plant:hover{
+	padding: 1em;
+	border-radius: 5px;
+	background-color: #56C5FF;
+}
+.plant_name{
+	width:395px;
+	padding:0 0 0 10px;
+	float:left;
+	font-size: 20px;
+	line-height: 25px;
+}
+.plant_wiki{
+	width:395px;
+	padding:0 0 0 10px;
+	float:left;
+	font-size: 14px;
+	line-height: 20px;
+}
+.plant_detail{
+	padding:1em 0em 0em 0em;	
+}
+
+.main .main-inner .container a{
+	color:#545454;
+	text-decoration: none;
+}
+
+.main .main-inner .container a:hover{
+	color:#FFF;
+	text-decoration: none;
+}
+.plant_detail #big_stats i {
+	color:#555;
+}
+.plant_detail #big_stats i:hover {
+	color:#FFFFFF;
+}
+.plant_detail #big_stats .stat span:hover {
+	color:#FFFFFF !important;
+}

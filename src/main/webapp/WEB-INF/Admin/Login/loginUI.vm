@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录 - 个人网站后台登陆</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link href="/style/login/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="/style/login/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+		<link href="/style/login/css/font-awesome.css" rel="stylesheet">
+		<link href="/style/login/css/style.css" rel="stylesheet" type="text/css">
+		<link href="/style/login/css/pages/signin.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="#"> 个人网站后台管理系统 </a>
+					<div class="nav-collapse">
+						<ul class="nav pull-right">
+							<li class="">
+								<a href="localhost:8080" class=""> <i class="icon-chevron-left"></i> 返回首页 </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="account-container">
+			<div class="content clearfix">
+				<form action="http://localhost:8080/login.htm" method="post">
+					<h1>登录</h1>
+
+					<div class="login-fields">
+						<div class="field">
+							<label for="username">帐号:</label>
+							<input type="text" id="username" name="loginName" value="" placeholder="请输入用户名" class="login username-field" />
+						</div>
+						<div class="field">
+							<label for="password">密码:</label>
+							<input type="password" id="password" name="password" value="" placeholder="请输入密码" class="login password-field"/>
+						</div>
+					</div>
+
+					<div class="login-actions">
+						<button class="button btn btn-success btn-large">登录</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script src="/style/login/js/jquery-1.7.2.min.js"></script>
+		<script src="/style/login/js/bootstrap.js"></script>
+		<script src="/style/login/js/signin.js"></script>
+	</body>
+</html>
