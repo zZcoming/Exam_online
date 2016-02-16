@@ -61,7 +61,7 @@
             },{
                 text:'角色管理',
                 items:[
-                    {id:'roleList',text:'角色列表',href:'main/operation.html'},
+                    {id:'roleList',text:'角色列表',href:'http://localhost:8080/roleListUI.htm',closeable : false},
                     {id:'addRole',text:'添加角色',href:'http://localhost:8080/addRoleUI.htm'}
                 ]
             },{

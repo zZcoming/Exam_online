@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxnu.webapp.dao.RoleDao">
+
+    <resultMap type="com.jxnu.webapp.model.Role" id="roleResultMap">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="menu_ids" property="menu_ids"/>
+    </resultMap>
+
+    <select id="listAllRoles" resultMap="roleResultMap">
+        select * from role
+    </select>
+    <select id="getRoleById" parameterType="int" resultMap="roleResultMap">
+        select * from role where id=#{id}
+    </select>
+
+    <insert id="insertRole" parameterType="com.jxnu.webapp.model.Role" useGeneratedKeys="true" keyProperty="id">
+        insert into role (name,menu_ids) values (#{name},#{menu_ids})
+    </insert>
+
+    <update id="updateRoleBaseInfo" parameterType="com.jxnu.webapp.model.Role">
+        update role set name=#{name},menu_ids=#{menu_ids} where id=#{id}
+    </update>
+
+    <delete id="deleteRoleById" parameterType="int">
+        delete from role where id=#{id}
+    </delete>
+
+    <select id="getCountByName" parameterType="com.jxnu.webapp.model.Role" resultType="int">
+        select count(id) from role where name=#{name}
+        <if test="id!=null or id>0">
+            and id!=#{id}
+        </if>
+    </select>
+
+</mapper>

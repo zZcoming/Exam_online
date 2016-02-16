@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxnu.webapp.dao.MenuDao">
+
+    <resultMap type="com.jxnu.webapp.model.Menu" id="menuResultMap">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="CHAR"/>
+        <result column="url" property="url" jdbcType="CHAR"/>
+        <result column="parentId" property="parentId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="listAllParentMenu" resultMap="menuResultMap">
+        select * from menu where parentId is null
+    </select>
+    <select id="listSubMenuByParentId" parameterType="int" resultMap="menuResultMap">
+        select * from menu where parentId=#{parentId}
+    </select>
+    <select id="getMenuById" parameterType="int" resultMap="menuResultMap">
+        select * from menu where id=#{id}
+    </select>
+    <select id="listAllSubMenu" resultMap="menuResultMap">
+        select * from menu where parentId is not null
+    </select>
+
+    <insert id="insertMenu" parameterType="com.jxnu.webapp.model.Menu"  useGeneratedKeys="true" keyProperty="id">
+        insert into menu (name,url,parentId) values (#{name},#{url},#{parentId})
+    </insert>
+
+    <update id="updateMenu" parameterType="com.jxnu.webapp.model.Menu">
+        update menu set
+        name=#{name},
+        url=#{url},
+        parentId=#{parentId}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteMenuById" parameterType="int">
+        delete from menu where id=#{id} or parentId=#{id}
+    </delete>
+</mapper>

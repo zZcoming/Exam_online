@@ -3,8 +3,10 @@ package com.jxnu.webapp.controller;
 import com.google.common.collect.Maps;
 
 import com.jxnu.webapp.model.Admin;
+import com.jxnu.webapp.model.Role;
 import com.jxnu.webapp.service.AdminService;
 
+import com.jxnu.webapp.service.RoleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,12 +29,15 @@ public class RbacController {
     private static Logger log = Logger.getLogger(RbacController.class);
     private static final String LOGINNAME= "loginName";
     private static final String PASSWORD = "password";
+    private static final String ROLENAME = "name";
 
     @Autowired
     AdminService adminService;
+    @Autowired
+    RoleService roleService;
 
     @RequestMapping("/addAdminUI")
-    public ModelAndView addUserUI(){
+    public ModelAndView addAdminUI(){
         return new ModelAndView("Admin/AdminManage/addAdmin");
     }
 
@@ -81,9 +86,32 @@ public class RbacController {
     }
 
     @RequestMapping("/addRole")
-    public ModelAndView addRole(){
-        return null;
+    @ResponseBody
+    public ModelAndView addRole(@RequestParam Map<String, String> data, HttpServletRequest request){
+        Role role = new Role();
+        String name = data.get(ROLENAME);
+        role.setName(name);
+        if(role.getId()!= null && role.getId().intValue()>0){
+            roleService.updateRoleBaseInfo(role);
+        }else{
+            roleService.insertRole(role);
+        }
+        return new ModelAndView("Admin/RoleManage/addRoleSuccess");
     }
 
+    @RequestMapping("/roleListUI")
+    public ModelAndView roleListUI(){
+        return new ModelAndView("Admin/RoleManage/roleList");
+    }
+
+    @RequestMapping("/roleList")
+    @ResponseBody
+    public Map<String, Object> roleList(@RequestParam Map<String, String> data) {
+        Map<String, Object> resultMap = Maps.newHashMap();
+        List<Role> lists = roleService.listAllRoles();
+        resultMap.put("rows", lists);
+        resultMap.put("results", 1);
+        return resultMap;
+    }
 
 }
