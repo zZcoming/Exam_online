@@ -15,19 +15,7 @@ import java.util.List;
  */
 @Service
 @Transactional(rollbackFor = { RuntimeException.class, Exception.class })
-public class AdminServiceImpl implements AdminService {
-
-    @Autowired
-    AdminDao adminDao;
-
-    public void addAdmin(Admin admin) {
-        adminDao.add(admin);
-    }
-
-    public List<Admin> findPage() {
-        List<Admin> admins= adminDao.selectAll();
-        return admins;
-    }
+public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminService {
 
     public Admin loginByAdminnameAndPass(String loginName,String password) {
         Admin admin = new Admin();
@@ -35,4 +23,5 @@ public class AdminServiceImpl implements AdminService {
         admin.setPassword(password);
         return adminDao.selectByAdminNameAndPass(admin);
     }
+
 }

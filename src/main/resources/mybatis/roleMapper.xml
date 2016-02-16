@@ -9,22 +9,22 @@
         <result column="menu_ids" property="menu_ids"/>
     </resultMap>
 
-    <select id="listAllRoles" resultMap="roleResultMap">
+    <select id="selectAll" resultMap="roleResultMap">
         select * from role
     </select>
-    <select id="getRoleById" parameterType="int" resultMap="roleResultMap">
+    <select id="queryById" parameterType="int" resultMap="roleResultMap">
         select * from role where id=#{id}
     </select>
 
-    <insert id="insertRole" parameterType="com.jxnu.webapp.model.Role" useGeneratedKeys="true" keyProperty="id">
+    <insert id="add" parameterType="com.jxnu.webapp.model.Role" useGeneratedKeys="true" keyProperty="id">
         insert into role (name,menu_ids) values (#{name},#{menu_ids})
     </insert>
 
-    <update id="updateRoleBaseInfo" parameterType="com.jxnu.webapp.model.Role">
+    <update id="update" parameterType="com.jxnu.webapp.model.Role">
         update role set name=#{name},menu_ids=#{menu_ids} where id=#{id}
     </update>
 
-    <delete id="deleteRoleById" parameterType="int">
+    <delete id="delete" parameterType="int">
         delete from role where id=#{id}
     </delete>
 

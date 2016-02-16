@@ -8,11 +8,7 @@ import java.util.List;
 /**
  * Created by zby on 16-1-20.
  */
-public interface AdminService {
-
-    public void addAdmin(Admin admin);
-
-    public List<Admin> findPage();
+public interface AdminService extends BaseService<Admin>{
 
     public Admin loginByAdminnameAndPass(String loginName, String password);
 

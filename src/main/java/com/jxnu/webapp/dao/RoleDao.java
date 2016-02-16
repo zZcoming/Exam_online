@@ -8,19 +8,7 @@ import java.util.List;
 /**
  * Created by zby on 16-1-22.
  */
-public interface RoleDao {
-
-    @DataSource(isRead = true)
-    List<Role> listAllRoles();
-
-    @DataSource(isRead = true)
-    Role getRoleById(int id);
-
-    void insertRole(Role role);
-
-    void updateRoleBaseInfo(Role role);
-
-    void deleteRoleById(int id);
+public interface RoleDao extends BaseDao<Role>{
 
     int getCountByName(Role role);
 

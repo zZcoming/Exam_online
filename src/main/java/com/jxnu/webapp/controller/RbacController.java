@@ -49,7 +49,7 @@ public class RbacController {
         String password = data.get(PASSWORD);
         admin.setLoginName(loginName);
         admin.setPassword(password);
-        adminService.addAdmin(admin);
+        adminService.addEntity(admin);
         return new ModelAndView("Admin/AdminManage/addAdminSuccess");
     }
 
@@ -74,7 +74,7 @@ public class RbacController {
     @ResponseBody
     public Map<String, Object> adminList(@RequestParam Map<String, String> data) {
         Map<String, Object> resultMap = Maps.newHashMap();
-        List<Admin> lists = adminService.findPage();
+        List<Admin> lists = adminService.selectAll();
         resultMap.put("rows", lists);
         resultMap.put("results", 1);
         return resultMap;

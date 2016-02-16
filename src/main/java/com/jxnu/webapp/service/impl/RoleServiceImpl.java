@@ -16,34 +16,29 @@ import java.util.List;
  */
 @Service
 @Transactional(rollbackFor = { RuntimeException.class, Exception.class })
-public class RoleServiceImpl implements RoleService {
+public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
 
-    @Autowired
-    RoleDao roleDao;
-    @Autowired
-    MenuDao menuDao;
+
 
     public List<Role> listAllRoles() {
-        List<Role> roles = roleDao.listAllRoles();
+        List<Role> roles = roleDao.selectAll();
         for (Role role:roles){
             String[] menuList = role.getMenu_ids().split(",");
             for (int i = 0; i < menuList.length; i++) {
                 List<Menu> menus = role.getMenus();
-                menus.add(menuDao.getMenuById(Integer.valueOf(menuList[i])));
+                menus.add(menuDao.queryById(Integer.valueOf(menuList[i])));
             }
         }
         return roles;
     }
 
-    public Role getRoleById(int id) {
-        return roleDao.getRoleById(id);
-    }
+
 
     public boolean insertRole(Role role) {
         if (roleDao.getCountByName(role) > 0){
             return false;
         }else {
-            roleDao.insertRole(role);
+            roleDao.add(role);
             return true;
         }
     }
@@ -52,19 +47,15 @@ public class RoleServiceImpl implements RoleService {
         if(roleDao.getCountByName(role) > 0) {
             return false;
         }else {
-            roleDao.updateRoleBaseInfo(role);
+            roleDao.update(role.getId());
             return true;
         }
     }
 
-    public void deleteRoleById(int id) {
-        roleDao.deleteRoleById(id);
-    }
-
     public List<Role> listAllRolesAndMenu() {
-        List<Role> roles = roleDao.listAllRoles();
+        List<Role> roles = roleDao.selectAll();
         for (Role role : roles){
-            
+            //todo
         }
         return null;
     }

@@ -14,10 +14,8 @@ import java.util.List;
  */
 @Service
 @Transactional(rollbackFor = { RuntimeException.class, Exception.class })
-public class MenuServiceImpl implements MenuService{
+public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuService{
 
-    @Autowired
-    MenuDao menuDao;
 
     public List<Menu> listAllMenu() {
         List<Menu> menus = menuDao.listAllParentMenu();
@@ -36,21 +34,17 @@ public class MenuServiceImpl implements MenuService{
         return menuDao.listSubMenuByParentId(parentId);
     }
 
-    public Menu getMenuById(Integer id) {
-        return menuDao.getMenuById(id);
-    }
+
 
     public void saveMenu(Menu menu) {
         if (menu.getId() != null && menu.getId().intValue() > 0) {
-            menuDao.updateMenu(menu);
+            menuDao.update(menu.getId());
         } else {
-            menuDao.insertMenu(menu);
+            menuDao.add(menu);
         }
     }
 
-    public void deleteMenuById(Integer id) {
-        menuDao.deleteMenuById(id);
-    }
+
 
     public List<Menu> listAllSubMenu() {
         return menuDao.listAllSubMenu();

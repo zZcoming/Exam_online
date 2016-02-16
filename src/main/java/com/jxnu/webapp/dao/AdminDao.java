@@ -8,12 +8,7 @@ import java.util.List;
 /**
  * Created by zby on 16-1-20.
  */
-public interface AdminDao {
-
-    public void add(Admin admin);
-
-    @DataSource(isRead = true)
-    public List<Admin> selectAll();
+public interface AdminDao extends BaseDao<Admin>{
 
     @DataSource(isRead = true)
     public Admin selectByAdminNameAndPass(Admin admin);
