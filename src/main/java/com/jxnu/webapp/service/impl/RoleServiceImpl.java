@@ -18,9 +18,11 @@ import java.util.List;
 @Transactional(rollbackFor = { RuntimeException.class, Exception.class })
 public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
 
-
+    @Autowired
+    private RoleDao roleDao;
 
     public List<Role> listAllRoles() {
+        MenuDao menuDao = (MenuDao) getApplicationContext().getBean("menuDao");
         List<Role> roles = roleDao.selectAll();
         for (Role role:roles){
             String[] menuList = role.getMenu_ids().split(",");

@@ -8,14 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 /**
  * Created by zby on 16-1-20.
  */
 @Service
 @Transactional(rollbackFor = { RuntimeException.class, Exception.class })
 public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminService {
+
+    @Autowired
+    private AdminDao adminDao;
 
     public Admin loginByAdminnameAndPass(String loginName,String password) {
         Admin admin = new Admin();

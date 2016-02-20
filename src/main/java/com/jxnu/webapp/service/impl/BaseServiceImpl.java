@@ -1,12 +1,10 @@
 package com.jxnu.webapp.service.impl;
 
-import com.jxnu.webapp.dao.AdminDao;
 import com.jxnu.webapp.dao.BaseDao;
-import com.jxnu.webapp.dao.MenuDao;
-import com.jxnu.webapp.dao.RoleDao;
-import com.jxnu.webapp.model.Menu;
 import com.jxnu.webapp.service.BaseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -14,15 +12,9 @@ import java.util.List;
 /**
  * Created by zby on 16-2-17.
  */
-public class BaseServiceImpl<T> implements BaseService<T> {
-    @Autowired
-    AdminDao adminDao;
+public class BaseServiceImpl<T> implements BaseService<T>,ApplicationContextAware {
 
-    @Autowired
-    RoleDao roleDao;
-
-    @Autowired
-    MenuDao menuDao;
+    private ApplicationContext applicationContext;
 
     private Class<T> clazz;
 
@@ -60,15 +52,24 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         String className = this.getClazz().getSimpleName().toLowerCase();
         String daoName = className + "Dao"; // userDao
 
-        if ("roleDao".equals(daoName)) {
-            return roleDao;
-        } else if ("menuDao".equals(daoName)) {
-            return menuDao;
-        } else if ("adminDao".equals(daoName)) {
-            return adminDao;
-        }else {
-            return null;
-        }
+//        if ("roleDao".equals(daoName)) {
+//            return roleDao;
+//        } else if ("menuDao".equals(daoName)) {
+//            return menuDao;
+//        } else if ("adminDao".equals(daoName)) {
+//            return adminDao;
+//        }else {
+//            return null;
+//        }
 
+        return (BaseDao) applicationContext.getBean(daoName);
+    }
+
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    public ApplicationContext getApplicationContext() {
+        return applicationContext;
     }
 }

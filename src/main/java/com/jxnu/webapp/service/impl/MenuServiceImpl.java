@@ -16,6 +16,8 @@ import java.util.List;
 @Transactional(rollbackFor = { RuntimeException.class, Exception.class })
 public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuService{
 
+    @Autowired
+    private MenuDao menuDao;
 
     public List<Menu> listAllMenu() {
         List<Menu> menus = menuDao.listAllParentMenu();
