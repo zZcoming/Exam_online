@@ -7,3 +7,4 @@
 target/classes/*
 target/*
 */db.properties
+src/test

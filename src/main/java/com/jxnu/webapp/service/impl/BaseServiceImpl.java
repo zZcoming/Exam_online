@@ -29,8 +29,8 @@ public class BaseServiceImpl<T> implements BaseService<T>,ApplicationContextAwar
     public BaseServiceImpl() {
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         this.clazz = (Class<T>) pt.getActualTypeArguments()[0];
-        System.out.println(clazz.getSimpleName()); // Role
-        System.out.println("clazz ---> " + clazz); // com.jxnu.webapp.Role
+//        System.out.println(clazz.getSimpleName()); // Role
+//        System.out.println("clazz ---> " + clazz); // com.jxnu.webapp.Role
     }
     public void addEntity(T entity) {
         getDao().add(entity);
@@ -51,17 +51,6 @@ public class BaseServiceImpl<T> implements BaseService<T>,ApplicationContextAwar
 
         String className = this.getClazz().getSimpleName().toLowerCase();
         String daoName = className + "Dao"; // userDao
-
-//        if ("roleDao".equals(daoName)) {
-//            return roleDao;
-//        } else if ("menuDao".equals(daoName)) {
-//            return menuDao;
-//        } else if ("adminDao".equals(daoName)) {
-//            return adminDao;
-//        }else {
-//            return null;
-//        }
-
         return (BaseDao) applicationContext.getBean(daoName);
     }
 
